@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Real Estate Management</title>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <h1>Real Estate Management</h1>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="properties.html">
+                Properties
+            </a>
+
+            <a href="add-property.html">
+                Add Property
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN LOGIN SECTION
+    ========================== -->
+
+    <main>
+
+        <h2>Login</h2>
+
+        <p>
+            Login to access your real estate account.
+        </p>
+
+
+        <!-- Login Form -->
+
+        <form id="loginForm">
+
+            <!-- Email -->
+
+            <div>
+
+                <label for="email">
+                    Email:
+                </label>
+
+                <br>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Password -->
+
+            <div>
+
+                <label for="password">
+                    Password:
+                </label>
+
+                <br>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Login Button -->
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+
+        <!-- Message area -->
+
+        <div id="message"></div>
+
+
+        <!-- Register link -->
+
+        <p>
+
+            Don't have an account?
+
+            <a href="register.html">
+                Create an account
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Real Estate Management
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         TEMPORARY JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        // Get the login form
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+
+        // Get message element
+
+        const message =
+            document.getElementById("message");
+
+
+        // Handle form submission
+
+        loginForm.addEventListener("submit", function(event) {
+
+            // Prevent browser from refreshing the page
+
+            event.preventDefault();
+
+
+            // Get entered values
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+
+            // Validate email
+
+            if (email === "") {
+
+                message.innerHTML =
+                    "<p>Please enter your email.</p>";
+
+                return;
+
+            }
+
+
+            // Validate password
+
+            if (password === "") {
+
+                message.innerHTML =
+                    "<p>Please enter your password.</p>";
+
+                return;
+
+            }
+
+
+            // Temporary success message
+
+            message.innerHTML =
+                "<p>Login form submitted successfully.</p>";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
