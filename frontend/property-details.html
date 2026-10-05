@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Property Details - Real Estate Management</title>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <h1>Real Estate Management</h1>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="properties.html">
+                Properties
+            </a>
+
+            <a href="add-property.html">
+                Add Property
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main>
+
+        <h2>Property Details</h2>
+
+
+        <!-- Property Details Container -->
+
+        <section id="propertyDetails">
+
+            <!-- JavaScript will display
+                 property information here -->
+
+        </section>
+
+
+        <br>
+
+
+        <!-- Navigation -->
+
+        <a href="properties.html">
+            ← Back to Properties
+        </a>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Real Estate Management
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /*
+         * Get the property ID from the URL.
+         *
+         * Example:
+         *
+         * property-details.html?id=1
+         *
+         * The value of id will be:
+         *
+         * 1
+         */
+
+        const urlParams =
+            new URLSearchParams(window.location.search);
+
+        const propertyId =
+            urlParams.get("id");
+
+
+        /*
+         * Property details container
+         */
+
+        const propertyDetails =
+            document.getElementById("propertyDetails");
+
+
+        /*
+         * Temporary mock property data.
+         *
+         * Later this will come from:
+         *
+         * GET /api/properties/<id>
+         */
+
+        const properties = [
+
+            {
+                id: 1,
+                title: "3 BHK Apartment",
+                description:
+                    "Modern 3 BHK apartment located in Hyderabad with excellent connectivity and nearby facilities.",
+                price: 7500000,
+                location: "Hyderabad",
+                property_type: "Apartment",
+                bedrooms: 3,
+                bathrooms: 2,
+                area: 1800
+            },
+
+            {
+                id: 2,
+                title: "2 BHK Apartment",
+                description:
+                    "Beautiful 2 BHK apartment located near the city center.",
+                price: 5500000,
+                location: "Bangalore",
+                property_type: "Apartment",
+                bedrooms: 2,
+                bathrooms: 2,
+                area: 1200
+            },
+
+            {
+                id: 3,
+                title: "4 BHK Villa",
+                description:
+                    "Spacious villa with parking and modern facilities.",
+                price: 12500000,
+                location: "Hyderabad",
+                property_type: "Villa",
+                bedrooms: 4,
+                bathrooms: 3,
+                area: 2800
+            }
+
+        ];
+
+
+        /*
+         * Find the property using the ID
+         */
+
+        const property =
+            properties.find(function(item) {
+
+                return item.id === Number(propertyId);
+
+            });
+
+
+        /*
+         * Check whether property exists
+         */
+
+        if (!property) {
+
+            propertyDetails.innerHTML = `
+
+                <h3>Property Not Found</h3>
+
+                <p>
+                    The property you are looking for
+                    does not exist.
+                </p>
+
+            `;
+
+        }
+
+        else {
+
+            /*
+             * Display property details
+             */
+
+            propertyDetails.innerHTML = `
+
+                <h2>
+                    ${property.title}
+                </h2>
+
+
+                <p>
+                    <strong>Property Type:</strong>
+                    ${property.property_type}
+                </p>
+
+
+                <p>
+                    <strong>Location:</strong>
+                    ${property.location}
+                </p>
+
+
+                <p>
+                    <strong>Price:</strong>
+                    ₹${property.price.toLocaleString("en-IN")}
+                </p>
+
+
+                <p>
+                    <strong>Bedrooms:</strong>
+                    ${property.bedrooms}
+                </p>
+
+
+                <p>
+                    <strong>Bathrooms:</strong>
+                    ${property.bathrooms}
+                </p>
+
+
+                <p>
+                    <strong>Area:</strong>
+                    ${property.area} sqft
+                </p>
+
+
+                <h3>
+                    Description
+                </h3>
+
+
+                <p>
+                    ${property.description}
+                </p>
+
+
+                <br>
+
+
+                <!-- Edit Property -->
+
+                <a href="edit-property.html?id=${property.id}">
+                    Edit Property
+                </a>
+
+
+                <br>
+                <br>
+
+
+                <!-- Delete Property -->
+
+                <button id="deleteButton">
+                    Delete Property
+                </button>
+
+            `;
+
+
+            /*
+             * Delete button
+             */
+
+            const deleteButton =
+                document.getElementById("deleteButton");
+
+
+            deleteButton.addEventListener(
+                "click",
+                function() {
+
+                    const confirmDelete =
+                        confirm(
+                            "Are you sure you want to delete this property?"
+                        );
+
+
+                    if (confirmDelete) {
+
+                        alert(
+                            "Property deleted successfully!"
+                        );
+
+
+                        /*
+                         * Later this will call:
+                         *
+                         * DELETE /api/properties/<id>
+                         */
+
+                        window.location.href =
+                            "properties.html";
+
+                    }
+
+                }
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
