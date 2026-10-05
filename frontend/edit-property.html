@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Property - Real Estate Management</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+
+        <h1>Real Estate Management</h1>
+
+        <!-- Navigation -->
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="add-property.html">Add Property</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main>
+
+        <h2>Edit Property</h2>
+
+        <p>
+            Update the property information below.
+        </p>
+
+
+        <!-- Edit Property Form -->
+        <form id="editPropertyForm">
+
+            <!-- Property Title -->
+            <div>
+
+                <label for="title">
+                    Property Title:
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Example: 3 BHK Apartment"
+                    value="3 BHK Apartment"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Description -->
+            <div>
+
+                <label for="description">
+                    Description:
+                </label>
+
+                <br>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="5"
+                    placeholder="Enter property description"
+                    required
+                >Modern 3 BHK apartment located in Hyderabad.</textarea>
+
+            </div>
+
+            <br>
+
+
+            <!-- Price -->
+            <div>
+
+                <label for="price">
+                    Price:
+                </label>
+
+                <input
+                    type="number"
+                    id="price"
+                    name="price"
+                    placeholder="Example: 7500000"
+                    value="7500000"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Location -->
+            <div>
+
+                <label for="location">
+                    Location:
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="Example: Hyderabad"
+                    value="Hyderabad"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- City -->
+            <div>
+
+                <label for="city">
+                    City:
+                </label>
+
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    placeholder="Example: Hyderabad"
+                    value="Hyderabad"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Property Type -->
+            <div>
+
+                <label for="property_type">
+                    Property Type:
+                </label>
+
+                <select
+                    id="property_type"
+                    name="property_type"
+                    required
+                >
+
+                    <option value="">
+                        Select Property Type
+                    </option>
+
+                    <option value="Apartment" selected>
+                        Apartment
+                    </option>
+
+                    <option value="House">
+                        House
+                    </option>
+
+                    <option value="Villa">
+                        Villa
+                    </option>
+
+                    <option value="Plot">
+                        Plot
+                    </option>
+
+                    <option value="Commercial">
+                        Commercial
+                    </option>
+
+                </select>
+
+            </div>
+
+            <br>
+
+
+            <!-- Bedrooms -->
+            <div>
+
+                <label for="bedrooms">
+                    Bedrooms:
+                </label>
+
+                <input
+                    type="number"
+                    id="bedrooms"
+                    name="bedrooms"
+                    placeholder="Example: 3"
+                    value="3"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Bathrooms -->
+            <div>
+
+                <label for="bathrooms">
+                    Bathrooms:
+                </label>
+
+                <input
+                    type="number"
+                    id="bathrooms"
+                    name="bathrooms"
+                    placeholder="Example: 2"
+                    value="2"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Area -->
+            <div>
+
+                <label for="area">
+                    Area (sqft):
+                </label>
+
+                <input
+                    type="number"
+                    id="area"
+                    name="area"
+                    placeholder="Example: 1800"
+                    value="1800"
+                    min="0"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Buttons -->
+
+            <button type="submit">
+                Update Property
+            </button>
+
+            <button type="reset">
+                Reset
+            </button>
+
+            <a href="properties.html">
+                Cancel
+            </a>
+
+        </form>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            &copy; 2026 Real Estate Management
+        </p>
+
+    </footer>
+
+
+    <!-- Temporary JavaScript -->
+    <script>
+
+        const editPropertyForm =
+            document.getElementById("editPropertyForm");
+
+
+        editPropertyForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            alert("Property updated successfully!");
+
+        });
+
+    </script>
+
+</body>
+
+</html>
