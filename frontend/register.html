@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - Real Estate Management</title>
+
+</head>
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <h1>Real Estate Management</h1>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="properties.html">
+                Properties
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main>
+
+        <h2>Create an Account</h2>
+
+        <p>
+            Register to manage your properties.
+        </p>
+
+
+        <!-- =========================
+             REGISTER FORM
+        ========================== -->
+
+        <form id="registerForm">
+
+
+            <!-- Name -->
+
+            <div>
+
+                <label for="name">
+                    Name:
+                </label>
+
+                <br>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    autocomplete="name"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Email -->
+
+            <div>
+
+                <label for="email">
+                    Email:
+                </label>
+
+                <br>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Password -->
+
+            <div>
+
+                <label for="password">
+                    Password:
+                </label>
+
+                <br>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Confirm Password -->
+
+            <div>
+
+                <label for="confirmPassword">
+                    Confirm Password:
+                </label>
+
+                <br>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    required
+                >
+
+            </div>
+
+            <br>
+
+
+            <!-- Register Button -->
+
+            <button type="submit">
+                Register
+            </button>
+
+
+        </form>
+
+
+        <!-- =========================
+             MESSAGE
+        ========================== -->
+
+        <div id="message"></div>
+
+
+        <!-- Login Link -->
+
+        <p>
+
+            Already have an account?
+
+            <a href="login.html">
+                Login here
+            </a>
+
+        </p>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Real Estate Management
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        // Get register form
+
+        const registerForm =
+            document.getElementById("registerForm");
+
+
+        // Get message area
+
+        const message =
+            document.getElementById("message");
+
+
+        // Handle form submission
+
+        registerForm.addEventListener(
+            "submit",
+            function(event) {
+
+                // Prevent page refresh
+
+                event.preventDefault();
+
+
+                // Get values
+
+                const name =
+                    document.getElementById("name")
+                    .value
+                    .trim();
+
+
+                const email =
+                    document.getElementById("email")
+                    .value
+                    .trim();
+
+
+                const password =
+                    document.getElementById("password")
+                    .value;
+
+
+                const confirmPassword =
+                    document.getElementById("confirmPassword")
+                    .value;
+
+
+                // Clear previous message
+
+                message.innerHTML = "";
+
+
+                // Validate name
+
+                if (name === "") {
+
+                    message.innerHTML =
+                        "<p>Please enter your name.</p>";
+
+                    return;
+
+                }
+
+
+                // Validate email
+
+                if (email === "") {
+
+                    message.innerHTML =
+                        "<p>Please enter your email.</p>";
+
+                    return;
+
+                }
+
+
+                // Validate password
+
+                if (password === "") {
+
+                    message.innerHTML =
+                        "<p>Please enter your password.</p>";
+
+                    return;
+
+                }
+
+
+                // Check password length
+
+                if (password.length < 8) {
+
+                    message.innerHTML =
+                        "<p>Password must contain at least 8 characters.</p>";
+
+                    return;
+
+                }
+
+
+                // Check password confirmation
+
+                if (password !== confirmPassword) {
+
+                    message.innerHTML =
+                        "<p>Passwords do not match.</p>";
+
+                    return;
+
+                }
+
+
+                // Temporary success message
+
+                message.innerHTML =
+                    "<p>Registration form submitted successfully.</p>";
+
+
+                /*
+                 * Later we will replace this with:
+                 *
+                 * POST /api/auth/register
+                 *
+                 * Example request:
+                 *
+                 * {
+                 *     "name": name,
+                 *     "email": email,
+                 *     "password": password
+                 * }
+                 *
+                 */
+
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
