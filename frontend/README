@@ -1,0 +1,38 @@
+# Real Estate Frontend
+
+Vanilla HTML/CSS/JavaScript frontend for the Real Estate Management Application.
+
+## Structure
+
+- index.html - home page
+- login.html - login
+- register.html - registration
+- properties.html - property listing
+- property-details.html - property details
+- add-property.html - create property
+- edit-property.html - update property
+- js/api.js - central REST API client
+- js/auth.js - JWT/authentication state
+- js/properties.js - property card rendering
+- css/style.css - shared styles
+
+## Backend API expected by this frontend
+
+Base URL:
+http://localhost:5000/api
+
+Authentication:
+POST /auth/login
+POST /auth/register
+GET /auth/me
+
+Properties:
+GET /properties
+GET /properties/<id>
+POST /properties
+PUT /properties/<id>
+DELETE /properties/<id>
+
+## Important
+
+These endpoint paths are based on the project specification and must be verified against the actual Flask routes before integration. If Bharath's route names, request fields, or response JSON differ, update only js/api.js and the affected page payload/response mapping.
