@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Properties - Real Estate Management</title>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <h1>Real Estate Management</h1>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="properties.html">
+                Properties
+            </a>
+
+            <a href="add-property.html">
+                Add Property
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main>
+
+        <h2>Available Properties</h2>
+
+        <p>
+            Browse properties available in our application.
+        </p>
+
+
+        <!-- =========================
+             SEARCH
+        ========================== -->
+
+        <section>
+
+            <h3>Search Properties</h3>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by property name or location"
+            >
+
+            <button id="searchButton">
+                Search
+            </button>
+
+        </section>
+
+
+        <br>
+
+
+        <!-- =========================
+             PROPERTY LIST
+        ========================== -->
+
+        <section>
+
+            <div id="propertyContainer">
+
+                <!-- Property cards will be displayed here -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MESSAGE
+        ========================== -->
+
+        <div id="message"></div>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Real Estate Management
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /*
+         * Temporary property data.
+         *
+         * This is mock data for frontend development.
+         *
+         * Later this data will come from:
+         *
+         * GET /api/properties
+         */
+
+        const properties = [
+
+            {
+                id: 1,
+                title: "3 BHK Apartment",
+                description: "Modern apartment in Hyderabad",
+                price: 7500000,
+                location: "Hyderabad",
+                property_type: "Apartment",
+                bedrooms: 3,
+                bathrooms: 2,
+                area: 1800
+            },
+
+            {
+                id: 2,
+                title: "2 BHK Apartment",
+                description: "Beautiful apartment near the city",
+                price: 5500000,
+                location: "Bangalore",
+                property_type: "Apartment",
+                bedrooms: 2,
+                bathrooms: 2,
+                area: 1200
+            },
+
+            {
+                id: 3,
+                title: "4 BHK Villa",
+                description: "Spacious villa with parking",
+                price: 12500000,
+                location: "Hyderabad",
+                property_type: "Villa",
+                bedrooms: 4,
+                bathrooms: 3,
+                area: 2800
+            }
+
+        ];
+
+
+        /*
+         * Get HTML elements
+         */
+
+        const propertyContainer =
+            document.getElementById("propertyContainer");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const searchButton =
+            document.getElementById("searchButton");
+
+        const message =
+            document.getElementById("message");
+
+
+        /*
+         * Display properties
+         */
+
+        function displayProperties(propertyList) {
+
+            propertyContainer.innerHTML = "";
+
+
+            /*
+             * Check if there are no properties
+             */
+
+            if (propertyList.length === 0) {
+
+                propertyContainer.innerHTML =
+                    "<p>No properties found.</p>";
+
+                return;
+
+            }
+
+
+            /*
+             * Create property cards
+             */
+
+            propertyList.forEach(function(property) {
+
+                const propertyCard =
+                    document.createElement("div");
+
+
+                propertyCard.innerHTML = `
+
+                    <h3>
+                        ${property.title}
+                    </h3>
+
+                    <p>
+                        <strong>Location:</strong>
+                        ${property.location}
+                    </p>
+
+                    <p>
+                        <strong>Price:</strong>
+                        ₹${property.price.toLocaleString("en-IN")}
+                    </p>
+
+                    <p>
+                        <strong>Property Type:</strong>
+                        ${property.property_type}
+                    </p>
+
+                    <p>
+                        <strong>Bedrooms:</strong>
+                        ${property.bedrooms}
+                    </p>
+
+                    <p>
+                        <strong>Bathrooms:</strong>
+                        ${property.bathrooms}
+                    </p>
+
+                    <p>
+                        <strong>Area:</strong>
+                        ${property.area} sqft
+                    </p>
+
+                    <p>
+                        ${property.description}
+                    </p>
+
+                    <a href="property-details.html?id=${property.id}">
+                        View Details
+                    </a>
+
+                    <hr>
+
+                `;
+
+
+                propertyContainer.appendChild(propertyCard);
+
+            });
+
+        }
+
+
+        /*
+         * Display properties when page loads
+         */
+
+        displayProperties(properties);
+
+
+        /*
+         * Search properties
+         */
+
+        searchButton.addEventListener(
+            "click",
+            function() {
+
+                const searchValue =
+                    searchInput.value
+                        .toLowerCase()
+                        .trim();
+
+
+                /*
+                 * Filter properties
+                 */
+
+                const filteredProperties =
+                    properties.filter(function(property) {
+
+                        return (
+
+                            property.title
+                                .toLowerCase()
+                                .includes(searchValue)
+
+                            ||
+
+                            property.location
+                                .toLowerCase()
+                                .includes(searchValue)
+
+                            ||
+
+                            property.property_type
+                                .toLowerCase()
+                                .includes(searchValue)
+
+                        );
+
+                    });
+
+
+                /*
+                 * Display filtered properties
+                 */
+
+                displayProperties(filteredProperties);
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
